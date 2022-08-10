@@ -24,11 +24,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/m',  function (){
     return view('calendar');
 });
-Route::get('/m2',  function (){
+
+Route::get('/dashboard',  function (){
+    return view('dashboard');
+});
+
+Route::get('/choose-date',  function (){
     return view('calendar2');
 });
 
 
 Route::post('hhhhhhhhhhh' ,[App\Http\Controllers\HomeController::class, 'mmm']);
-Route::post('caculateTime' ,[App\Http\Controllers\HomeController::class, 'mmm2'])->name('submitDates.now');
+Route::post('caculateTime' ,[App\Http\Controllers\HomeController::class, 'submitDate'])->name('submitDates.now');
 Route::post('reserve-now/{fromDate}/{toDate}' ,[App\Http\Controllers\HomeController::class, 'reserveRoomNow'])->name('reserve.now');

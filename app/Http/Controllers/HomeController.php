@@ -37,32 +37,17 @@ class HomeController extends Controller
     }
 
 
-    public function mmm2(Request $request)
+    public function submitDate(Request $request)
     {
-
         if ($request->from_date || $request->to_date) {
-//            $start_date = Carbon::parse($request->from_date)->toDateTimeString();
-//            $end_date = Carbon::parse($request->to_date)->toDateTimeString();
-            $start = $request->from_date;
-            $end = $request->to_date;
-//            $data['all'] = Booking::whereNotBetween('booking_date', [$start, $end])->whereNotBetween('to_date' , [$start , $end] )->with(['rooms' => function($query)  {
-//
-//                $query
-//                    ->get();
-//
-//            }])->get();
-
-
-            $data['all'] = Room::whereNotBetween('from_date', [$start, $end])->whereNotBetween('to_date' , [$start , $end] )->get();
-
-
-
             $data['fromDate'] = $request->from_date;
             $data['toDate'] = $request->to_date;
+
+            $data['all'] = DB::SELECT("SELECT * FROM rooms WHERE id NOT IN (SELECT room_id FROM bookings WHERE '$request->from_date' BETWEEN from_date AND to_date OR  '$request->to_date' BETWEEN from_date AND to_date)");
+
+
             return view('calendar2' , compact('data'));
 
-        }else{
-            return redirect()->back();
 
         }
 
@@ -80,9 +65,9 @@ class HomeController extends Controller
 
         ]);
         if($booking){
-            return redirect('/m2')->with('msg' , 'bravo');
+            return redirect('/choose-date')->with('msg' , 'Congratulations , Reservation is done successfully');
         }else{
-            return redirect('/m2')->with('msg' , 'noooooooo');
+            return redirect('/choose-date')->with('msg' , 'sorry ,  Reservation is not done');
 
         }
 
