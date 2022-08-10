@@ -65,11 +65,12 @@
 
                                     @isset($data['all']  )
                                     @foreach($data['all'] as $room)
+                                        <div class="row">
                                     <div class="col-md-12">
 {{--                                        <div class="card card-primary">--}}
 {{--                                            <div class="card-body p-0">--}}
 
-                                        <a class="btn btn-app bg-warning" href="#" data-toggle="modal" data-target="#myModal">
+                                        <a class="btn btn-app bg-warning d-inline-block flex-column" style="display: inline-block" href="#" data-toggle="modal" data-target="#myModal">
                                             <span class="badge bg-success">Available</span>
                                             <i class="fas fa-house-user"></i> {{$room->name}}
                                         </a>
@@ -120,7 +121,7 @@
 {{--                                        </div>--}}
                                         <!-- /.card -->
                                     </div>
-
+                                        </div>
 
                                             @endforeach
 

@@ -57,7 +57,6 @@ class HomeController extends Controller
     public function reserveRoomNow($fromDate , $toDate , Request $request)
     {
         $booking = Booking::create([
-            'booking_date' => $fromDate ,
                     'from_date' => $fromDate ,
             'to_date' => $toDate ,
             'room_id' => $request->room_id,
